@@ -1476,9 +1476,9 @@
           totalUninsured += uninsured;
         }
         
-        insights = `You distributed MYR ${depositAmount.toLocaleString()} equally across ${householdMembers} joint accounts (MYR ${amountPerAccount.toLocaleString()} each). ` +
+        insights = `You distributed MYR ${depositAmount.toLocaleString()} equally across ${householdMembers} joint accounts (${formatCurrency(amountPerAccount, 'MYR')} each). ` +
                   (totalUninsured > 0 ?
-                    `Each account has MYR ${Math.min(amountPerAccount, malaysiaLimit).toLocaleString()} protected, with MYR ${(totalUninsured/householdMembers).toLocaleString()} uninsured per account.` :
+                    `Each account has MYR ${Math.min(amountPerAccount, malaysiaLimit).toLocaleString()} protected, with ${formatCurrency(totalUninsured/householdMembers, 'MYR')} uninsured per account.` :
                     `All joint accounts are fully protected under PIDM coverage. `);
                     
       } else {
