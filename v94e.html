@@ -969,16 +969,25 @@
 
       if (country.name === 'Myanmar') {
         const convertedAmount = amount * exchangeRates[country.currency];
-        
-        if (convertedAmount < 100000 || convertedAmount > 1000000) {
-          actualCoverage = 0;
-          isFullyCovered = false;
-          coveragePercentage = 0;
+  
+        if (convertedAmount < 100000) {
+         // Below minimum - no coverage
+         actualCoverage = 0;
+         isFullyCovered = false;
+         coveragePercentage = 0;
+        } else if (convertedAmount <= 1000000) {
+         // Within range - 60% coverage
+         const coverageInMMK = convertedAmount * 0.6;
+         actualCoverage = coverageInMMK / exchangeRates[country.currency];
+         isFullyCovered = false;
+         coveragePercentage = 60;
         } else {
-          const coverageInMMK = convertedAmount * 0.6;
+          // Above limit - 60% of first 1,000,000 MMK only
+          const coverageInMMK = 1000000 * 0.6; // 600,000 MMK
           actualCoverage = coverageInMMK / exchangeRates[country.currency];
           isFullyCovered = false;
-          coveragePercentage = 60;
+          const actualCoveragePercentage = (coverageInMMK / convertedAmount) * 100;
+          coveragePercentage = actualCoveragePercentage;
         }
       } else {
         actualCoverage = Math.min(amount, limitInMYR);
