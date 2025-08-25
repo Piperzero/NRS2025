@@ -1052,6 +1052,7 @@
       countries.forEach(country => {
         const limitInMYR = country.currency === 'MYR' ? country.limit : country.limit / exchangeRates[country.currency];
         let isFullyCovered;
+        let hasCoverage = true;
 
         if (country.name === 'Myanmar') {
           const convertedAmount = amount * exchangeRates[country.currency];
