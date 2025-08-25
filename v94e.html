@@ -941,7 +941,7 @@
             isFullyCovered: false,
             hasCoverage: true,
             coveragePercentage: 60,
-            statusText: '60% Covered'
+            statusText: 'Partially Covered'
           };
         } else {
           const coverageInMMK = 1000000 * 0.6; // 600,000 MMK
@@ -952,7 +952,7 @@
             isFullyCovered: false,
             hasCoverage: true,
             coveragePercentage: actualCoveragePercentage,
-            statusText: '60% Covered'
+            statusText: 'Partially Covered'
           };
         }
       } else {
@@ -1030,7 +1030,7 @@
         progressBar.style.width = '100%';
       } else {
         coverageBadge.textContent = country.name === 'Myanmar' ? 
-          `🟡 60% Covered` : '🟡 Partially Covered';
+          `🟡 Partially Covered` : '🟡 Partially Covered';
         coverageBadge.className = 'coverage-badge badge-partial';
         coverageMainCard.className = 'coverage-main-card partially-covered';
         progressBar.className = 'progress-bar progress-partial';
