@@ -168,14 +168,13 @@
 
     .asean-logo {
       position: absolute;
-      top: 7px; /* Changed from 20px to 7px */
+      top: 7px;
       right: 30px;
       width: 120px;
       height: auto;
       z-index: 10;
     }
 
-    /* Make logo responsive on mobile */
     @media (max-width: 768px) {
       .asean-logo {
         width: 70px;
@@ -186,14 +185,13 @@
 
     .pidm-nrs2 {
       position: absolute;
-      top: 28px;  /* Larger than 7px due to different logo size than ASEAN's */
-      left: 20px;  /* Left instead of right */
-      height: 40px;  /* Set height to control size */
-      width: auto;  /* Let width scale automatically */
+      top: 28px;
+      left: 20px;
+      height: 40px;
+      width: auto;
       z-index: 10;
     }
 
-    /* Make both logos responsive on mobile */
     @media (max-width: 768px) {
       .asean-logo {
         width: 60px;
@@ -202,13 +200,12 @@
     }
   
       .pidm-nrs2 {
-        height: 25px;  /* Smaller on mobile */
+        height: 25px;
           top: 12px;
           left: 10px;
       }
     }
 
-    /* Enhanced Mobile Centering */
     @media (max-width: 768px) {
       body {
         padding: 5px;
@@ -238,7 +235,6 @@
     }
   }
 
-  /* Extra small screens */
   @media (max-width: 480px) {
     body {
       padding: 2px;
@@ -508,7 +504,6 @@
        <img src="https://raw.githubusercontent.com/Piperzero/NRS2025/main/pidm-nrs2.png" alt="PIDM NRS 2025" class="pidm-nrs2">
       <div class="landing-container">
         <div class="landing-header">
-          <!-- <div class="nrs-badge">NRS 2025 Official Tool</div> --> 
           <h1 class="landing-title">ASEAN Coverage Calculator</h1>
           <p class="landing-subtitle">ASEAN+3 Deposit Insurance Protection</p>
           <p class="landing-tagline">Discover how your deposits are protected in 13 jurisdictions</p>
@@ -621,7 +616,6 @@
           <div class="dashboard-header">
             <h2 class="dashboard-title">👨‍👩‍👧‍👦 Let's travel back to Malaysia...</h2>
           </div>
-          <!-- Malaysia map -->
           <div style="text-align: center; margin: 20px 0;">
             <img src="https://raw.githubusercontent.com/Piperzero/NRS2025/main/my-map.png" alt="Malaysia Map" style="max-width: 50%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           </div>
@@ -742,7 +736,6 @@
 
         <div id="step4PathB" class="summary-card" style="max-width: none; text-align: left; padding: 25px; display: none;">
           <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">📊</div>
-          <!-- <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">🤝</div> -->
           <div class="scenario-content">
             <h3 style="margin: 0 0 15px 0; color: #333; font-size: 18px;">Step 4: Joint Account Distribution</h3>
             <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #555;">
@@ -823,7 +816,6 @@
 
       <div class="scenario-step" id="step6Card" style="display: none;">
         <div class="summary-card" style="max-width: none; text-align: center; padding: 35px;">
-          <!-- <div class="summary-icon" style="margin-bottom: 20px; font-size: 48px;">🎯</div> -->
           <h3 style="margin: 0 0 25px 0; color: #333; font-size: 24px;">Step 6: Family Deposit Coverage Summary</h3>
           
           <div class="summary-dashboard" style="margin-bottom: 30px; text-align: left;">
@@ -927,6 +919,57 @@
       return currency + ' ' + parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
+    // FIXED: Create a unified coverage calculation function
+    function calculateCoverage(amount, country) {
+      const convertedAmount = amount * exchangeRates[country.currency];
+      const limitInMYR = country.currency === 'MYR' ? country.limit : country.limit / exchangeRates[country.currency];
+      
+      if (country.name === 'Myanmar') {
+        if (convertedAmount < 100000) {
+          return {
+            actualCoverage: 0,
+            isFullyCovered: false,
+            hasCoverage: false,
+            coveragePercentage: 0,
+            statusText: 'No Coverage'
+          };
+        } else if (convertedAmount <= 1000000) {
+          const coverageInMMK = convertedAmount * 0.6;
+          const actualCoverage = coverageInMMK / exchangeRates[country.currency];
+          return {
+            actualCoverage: actualCoverage,
+            isFullyCovered: false,
+            hasCoverage: true,
+            coveragePercentage: 60,
+            statusText: '60% Covered'
+          };
+        } else {
+          const coverageInMMK = 1000000 * 0.6; // 600,000 MMK
+          const actualCoverage = coverageInMMK / exchangeRates[country.currency];
+          const actualCoveragePercentage = (coverageInMMK / convertedAmount) * 100;
+          return {
+            actualCoverage: actualCoverage,
+            isFullyCovered: false,
+            hasCoverage: true,
+            coveragePercentage: actualCoveragePercentage,
+            statusText: '60% Covered'
+          };
+        }
+      } else {
+        const actualCoverage = Math.min(amount, limitInMYR);
+        const isFullyCovered = amount <= limitInMYR;
+        const coveragePercentage = Math.min(100, (limitInMYR / amount) * 100);
+        
+        return {
+          actualCoverage: actualCoverage,
+          isFullyCovered: isFullyCovered,
+          hasCoverage: true,
+          coveragePercentage: coveragePercentage,
+          statusText: isFullyCovered ? 'Fully Covered' : 'Partially Covered'
+        };
+      }
+    }
+
     function startTool() {
       document.getElementById('page0').classList.remove('active');
       document.getElementById('page1').classList.add('active');
@@ -965,35 +1008,8 @@
         coverageTitle.textContent = `🛡️ Deposit Insurance Coverage - ${country.name}`;
       }
 
-      let actualCoverage, isFullyCovered, coveragePercentage;
-
-      if (country.name === 'Myanmar') {
-        const convertedAmount = amount * exchangeRates[country.currency];
-  
-        if (convertedAmount < 100000) {
-         // Below minimum - no coverage
-         actualCoverage = 0;
-         isFullyCovered = false;
-         coveragePercentage = 0;
-        } else if (convertedAmount <= 1000000) {
-         // Within range - 60% coverage
-         const coverageInMMK = convertedAmount * 0.6;
-         actualCoverage = coverageInMMK / exchangeRates[country.currency];
-         isFullyCovered = false;
-         coveragePercentage = 60;
-        } else {
-          // Above limit - 60% of first 1,000,000 MMK only
-          const coverageInMMK = 1000000 * 0.6; // 600,000 MMK
-          actualCoverage = coverageInMMK / exchangeRates[country.currency];
-          isFullyCovered = false;
-          const actualCoveragePercentage = (coverageInMMK / convertedAmount) * 100;
-          coveragePercentage = actualCoveragePercentage;
-        }
-      } else {
-        actualCoverage = Math.min(amount, limitInMYR);
-        isFullyCovered = amount <= limitInMYR;
-        coveragePercentage = Math.min(100, (limitInMYR / amount) * 100);
-      }
+      // FIXED: Use the unified coverage calculation
+      const coverage = calculateCoverage(amount, country);
 
       if (country.currency === 'MYR') {
         coverageLimit.textContent = formatCurrency(limitInMYR, 'MYR');
@@ -1001,12 +1017,12 @@
         coverageLimit.textContent = `${formatCurrency(limitInMYR, 'MYR')} (${formatCurrency(limit, country.currency)})`;
       }
 
-      if (actualCoverage === 0) {
+      if (!coverage.hasCoverage) {
         coverageBadge.textContent = '⛔ No Coverage';
         coverageBadge.className = 'coverage-badge badge-no-coverage';
         coverageMainCard.className = 'coverage-main-card no-coverage';
         progressBar.style.width = '0%';
-      } else if (isFullyCovered) {
+      } else if (coverage.isFullyCovered) {
         coverageBadge.textContent = '✅ Fully Covered';
         coverageBadge.className = 'coverage-badge badge-covered';
         coverageMainCard.className = 'coverage-main-card fully-covered';
@@ -1018,10 +1034,10 @@
         coverageBadge.className = 'coverage-badge badge-partial';
         coverageMainCard.className = 'coverage-main-card partially-covered';
         progressBar.className = 'progress-bar progress-partial';
-        progressBar.style.width = coveragePercentage + '%';
+        progressBar.style.width = coverage.coveragePercentage + '%';
       }
 
-      const uninsuredMYR = amount - actualCoverage;
+      const uninsuredMYR = amount - coverage.actualCoverage;
       const uninsuredLocal = uninsuredMYR * exchangeRates[country.currency];
       
       if (country.currency === 'MYR') {
@@ -1042,6 +1058,7 @@
       document.getElementById('familyScenarioPrompt').style.display = 'block';
     }
 
+    // FIXED: Updated regional comparison to use the same logic
     function renderRegionalComparison(amount) {
       regionalResults.innerHTML = '';
       
@@ -1050,60 +1067,34 @@
       gridContainer.style.marginTop = '15px';
       
       countries.forEach(country => {
-        const limitInMYR = country.currency === 'MYR' ? country.limit : country.limit / exchangeRates[country.currency];
-        let isFullyCovered;
-        let hasCoverage = true; //This variable is to track if there's any coverage
-
-        if (country.name === 'Myanmar') {
-          const convertedAmount = amount * exchangeRates[country.currency];
-          if (convertedAmount < 100000) {
-            hasCoverage = false;
-            isFullyCovered = false;
-          } else if (convertedAmount <= 1000000) {
-            hasCoverage = true;
-            isFullyCovered = false; // Myanmar is never fully covered due to the 60% rule
-        //  }
-          } else {
-            hasCoverage = true; // All other countries have coverage if amount is positive
-            isFullyCovered = amount <= limitInMYR;
-          }
-        }
-
+        // FIXED: Use the unified coverage calculation
+        const coverage = calculateCoverage(amount, country);
+        
         const gridItem = document.createElement('div');
         gridItem.className = 'country-option';
         gridItem.style.cursor = 'default';
         
         let statusIcon, statusText, borderColor, backgroundColor, textColor;
 
-        if (country.name === 'Myanmar') {
-          if (!hasCoverage) {
-            statusIcon = '⛔';
-            statusText = 'No Coverage';
-            borderColor = '#ef4444';
-            backgroundColor = '#fef2f2';
-            textColor = '#ef4444';
-          } else {
-            statusIcon = '🟡';
-            statusText = '60% Covered';
-            borderColor = '#f59e0b';
-            backgroundColor = '#fffbeb';
-            textColor = '#f59e0b';
-          }
-        } else {
-          if (isFullyCovered) {
-            statusIcon = '✅';
-            statusText = 'Fully Covered';
-            borderColor = '#10b981';
-            backgroundColor = '#f0fdf4';
-            textColor = '#10b981';
+        if (!coverage.hasCoverage) {
+          statusIcon = '⛔';
+          statusText = 'No Coverage';
+          borderColor = '#ef4444';
+          backgroundColor = '#fef2f2';
+          textColor = '#ef4444';
+        } else if (coverage.isFullyCovered) {
+          statusIcon = '✅';
+          statusText = 'Fully Covered';
+          borderColor = '#10b981';
+          backgroundColor = '#f0fdf4';
+          textColor = '#10b981';
         } else {
           statusIcon = '🟡';
-          statusText = 'Partially Covered';
+          statusText = coverage.statusText;
           borderColor = '#f59e0b';
           backgroundColor = '#fffbeb';
           textColor = '#f59e0b';
-        }  
-      }  
+        }
 
         gridItem.style.border = `2px solid ${borderColor}`;
         gridItem.style.backgroundColor = backgroundColor;
@@ -1114,7 +1105,6 @@
             ${statusIcon} ${statusText}
           </div>
         `;
-
 
         gridContainer.appendChild(gridItem);
       });
@@ -1140,28 +1130,17 @@
     }
 
     function goBackToMain() {
+      // Reset global variables
       window.depositAmount = null;
       window.householdMembers = null;
       window.jointAccountChoice = null;
       window.equalSplitChoice = null;
       window.customPercentages = null;
       
-      document.getElementById('step1Card').style.display = 'block';
-      document.getElementById('step2Card').style.display = 'none';
-      document.getElementById('step3Card').style.display = 'none';
-      document.getElementById('step4Card').style.display = 'none';
-      document.getElementById('step5Card').style.display = 'none';
-      document.getElementById('step6Card').style.display = 'none';
+      // Reset family scenario steps
+      resetFamilyScenarioSteps();
       
-      const householdSelect = document.getElementById('householdMembers');
-      if (householdSelect) householdSelect.value = '';
-      
-      const jointSelect = document.getElementById('jointAccountChoice');
-      if (jointSelect) jointSelect.value = '';
-      
-      const equalSplitSelect = document.getElementById('equalSplitChoice');
-      if (equalSplitSelect) equalSplitSelect.value = '';
-      
+      // Navigate back to main page
       document.getElementById('page2').classList.remove('active');
       document.getElementById('page1').classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1542,17 +1521,20 @@
     }
     
     function startOver() {
+      // Reset global variables
       window.depositAmount = null;
       window.householdMembers = null;
       window.jointAccountChoice = null;
       window.equalSplitChoice = null;
       window.customPercentages = null;
       
+      // Reset page navigation
       document.getElementById('page1').classList.remove('active');
       document.getElementById('page2').classList.remove('active');
       document.getElementById('page0').classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       
+      // Reset main tool inputs and displays
       if (amountInput) amountInput.value = '';
       document.querySelectorAll('.country-option').forEach(el => el.classList.remove('selected'));
       if (summaryAmount) summaryAmount.textContent = 'MYR 0.00';
@@ -1562,12 +1544,94 @@
       if (coverageBox) coverageBox.style.display = 'none';
       if (regionalCoverage) regionalCoverage.style.display = 'none';
       if (document.getElementById('familyScenarioPrompt')) document.getElementById('familyScenarioPrompt').style.display = 'none';
+      
+      // FIXED: Reset all family scenario steps to initial state
+      resetFamilyScenarioSteps();
+    }
+
+    function resetFamilyScenarioSteps() {
+      // Show only Step 1, hide all others
+      document.getElementById('step1Card').style.display = 'block';
+      document.getElementById('step2Card').style.display = 'none';
+      document.getElementById('step3Card').style.display = 'none';
+      document.getElementById('step4Card').style.display = 'none';
+      document.getElementById('step5Card').style.display = 'none';
+      document.getElementById('step6Card').style.display = 'none';
+      
+      // Reset all form inputs
+      const householdSelect = document.getElementById('householdMembers');
+      if (householdSelect) householdSelect.value = '';
+      
+      const jointSelect = document.getElementById('jointAccountChoice');
+      if (jointSelect) jointSelect.value = '';
+      
+      const equalSplitSelect = document.getElementById('equalSplitChoice');
+      if (equalSplitSelect) equalSplitSelect.value = '';
+      
+      // Reset step buttons to disabled state
+      const step2Button = document.getElementById('step2Continue');
+      if (step2Button) {
+        step2Button.disabled = true;
+        step2Button.style.background = '#9ca3af';
+        step2Button.style.cursor = 'not-allowed';
+        step2Button.style.boxShadow = '0 4px 12px rgba(156, 163, 175, 0.3)';
+      }
+      
+      const step3Button = document.getElementById('step3Continue');
+      if (step3Button) {
+        step3Button.disabled = true;
+        step3Button.style.background = '#9ca3af';
+        step3Button.style.cursor = 'not-allowed';
+        step3Button.style.boxShadow = '0 4px 12px rgba(156, 163, 175, 0.3)';
+      }
+      
+      const step4Button = document.getElementById('step4Continue');
+      if (step4Button) {
+        step4Button.disabled = true;
+        step4Button.style.background = '#9ca3af';
+        step4Button.style.cursor = 'not-allowed';
+        step4Button.style.boxShadow = '0 4px 12px rgba(156, 163, 175, 0.3)';
+      }
+      
+      const step5Button = document.getElementById('step5Continue');
+      if (step5Button) {
+        step5Button.disabled = true;
+        step5Button.style.background = '#9ca3af';
+        step5Button.style.cursor = 'not-allowed';
+        step5Button.style.boxShadow = '0 4px 12px rgba(156, 163, 175, 0.3)';
+      }
+      
+      // Clear any dynamic content
+      const equalSplitResults = document.getElementById('equalSplitResults');
+      if (equalSplitResults) equalSplitResults.innerHTML = '';
+      
+      const percentageInputs = document.getElementById('percentageInputs');
+      if (percentageInputs) percentageInputs.innerHTML = '';
+      
+      const unequalSplitResults = document.getElementById('unequalSplitResults');
+      if (unequalSplitResults) unequalSplitResults.style.display = 'none';
+      
+      const unequalSplitResultsGrid = document.getElementById('unequalSplitResultsGrid');
+      if (unequalSplitResultsGrid) unequalSplitResultsGrid.innerHTML = '';
+      
+      // Reset path visibility
+      document.getElementById('step4PathA').style.display = 'none';
+      document.getElementById('step4PathB').style.display = 'none';
+      document.getElementById('step5PathC').style.display = 'none';
+      document.getElementById('step5PathD').style.display = 'none';
+      
+      // Clear percentage status
+      const totalPercentage = document.getElementById('totalPercentage');
+      if (totalPercentage) totalPercentage.textContent = '0%';
+      
+      const percentageStatus = document.getElementById('percentageStatus');
+      if (percentageStatus) percentageStatus.innerHTML = '';
     }
 
     // Initialize on page load
     renderCountryGrid();
 
-    // Add event listener for amount input to trigger calculations - ASA 2025
+    // Add event listener for amount input to trigger calculations
     if (amountInput) {
       amountInput.addEventListener('input', function() {
         const amount = parseFloat(this.value);
