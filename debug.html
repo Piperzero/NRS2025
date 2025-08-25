@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NRS 2025 ASEAN Coverage Calculator - DEBUG</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #CDD7E3 0%, #ADC7F8 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      box-sizing: border-box;
+      margin: 0;
+      flex-direction: column;
+    }
+    
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    .widget-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Landing Page Styles */
+    .landing-container {
+      text-align: center;
+      padding: 40px 20px;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .landing-header {
+      margin-bottom: 40px;
+    }
+    
+    .landing-title {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      background: #5A7ED8;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: bold;
+    }
+    
+    .landing-subtitle {
+      font-size: 1.3rem;
+      color: #555;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .landing-tagline {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      margin: 30px 0 40px 0;
+    }
+    
+    .feature-card {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+    
+    .feature-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    
+    .feature-description {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.4;
+    }
+    
+    .get-started-btn {
+      background: #5A7ED8;
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(90, 126, 216, 0.3);
+      margin-top: 20px;
+    }
+    
+    .get-started-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+    }
+    
+    .debug-info {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: monospace;
+      font-size: 12px;
+      z-index: 1000;
+      max-width: 300px;
+    }
+
+    /* Main Page Styles */
+    h1 {
+      text-align: center;
+      color: #5A7ED8;
+    }
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="debug-info" id="debugInfo">
+    Debug Info:<br>
+    Page loaded: <span id="loadStatus">No</span><br>
+    Button found: <span id="buttonStatus">No</span><br>
+    Click handler: <span id="clickStatus">No</span>
+  </div>
+
+  <div class="widget-container">
+    <!-- PAGE 0: Landing Page -->
+    <div class="page active" id="page0">
+      <div class="landing-container">
+        <div class="landing-header">
+          <h1 class="landing-title">ASEAN Coverage Calculator</h1>
+          <p class="landing-subtitle">ASEAN+3 Deposit Insurance Protection</p>
+          <p class="landing-tagline">Discover how your deposits are protected in 13 jurisdictions</p>
+        </div>
+        
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <div class="feature-title">13 Jurisdictions</div>
+            <div class="feature-description">Comparison of coverage across ASEAN+3 countries</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💰</div>
+            <div class="feature-title">Real-Time Analysis</div>
+            <div class="feature-description">Instant calculation with currency conversion and coverage visualisation</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">👨‍👩‍👧‍👦</div>
+            <div class="feature-title">Family Edition</div>
+            <div class="feature-description">Strategic distribution through joint accounts</div>
+          </div>
+        </div>
+        
+        <button class="get-started-btn" onclick="startTool()" id="startButton">
+          Start Coverage Calculator
+        </button>
+      </div>
+    </div>
+
+    <!-- PAGE 1: Main Deposit Insurance Tool -->
+    <div class="page" id="page1">
+      <h1>ASEAN Coverage Calculator</h1>
+      <p>This is page 1 - if you can see this, the navigation worked!</p>
+      <button onclick="goBackToLanding()" style="padding: 10px 20px; margin: 20px;">← Back to Landing</button>
+    </div>
+  </div>
+
+  <script>
+    console.log('Script starting...');
+    
+    // Update debug info
+    function updateDebug(field, value) {
+      const element = document.getElementById(field);
+      if (element) {
+        element.textContent = value;
+        element.style.color = value === 'Yes' ? '#00ff00' : '#ff0000';
+      }
+      console.log(`Debug: ${field} = ${value}`);
+    }
+
+    // Test function
+    function startTool() {
+      console.log('startTool() called!');
+      updateDebug('clickStatus', 'Yes');
+      
+      const page0 = document.getElementById('page0');
+      const page1 = document.getElementById('page1');
+      
+      if (page0 && page1) {
+        console.log('Both pages found, switching...');
+        page0.classList.remove('active');
+        page1.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        console.error('Pages not found!', {page0, page1});
+      }
+    }
+
+    function goBackToLanding() {
+      console.log('Going back to landing...');
+      const page0 = document.getElementById('page0');
+      const page1 = document.getElementById('page1');
+      
+      if (page0 && page1) {
+        page1.classList.remove('active');
+        page0.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // Check when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded!');
+      updateDebug('loadStatus', 'Yes');
+      
+      const button = document.getElementById('startButton');
+      if (button) {
+        console.log('Button found!');
+        updateDebug('buttonStatus', 'Yes');
+        
+        // Test click handler
+        button.addEventListener('click', function() {
+          console.log('Button clicked via event listener!');
+        });
+      } else {
+        console.error('Start button not found!');
+      }
+    });
+
+    // Also check on window load
+    window.addEventListener('load', function() {
+      console.log('Window loaded!');
+    });
+
+    console.log('Script ended...');
+  </script>
+</body>
+</html>
