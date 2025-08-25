@@ -130,6 +130,17 @@
       box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
     }
     
+    .nrs-badge {
+      display: inline-block;
+      background: #5A7ED8;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
     .disclaimer-section {
       margin-top: 40px;
       text-align: center;
@@ -157,78 +168,91 @@
 
     .asean-logo {
       position: absolute;
-      top: 7px;
+      top: 7px; /* Changed from 20px to 7px */
       right: 30px;
       width: 120px;
       height: auto;
       z-index: 10;
     }
 
+    /* Make logo responsive on mobile */
+    @media (max-width: 768px) {
+      .asean-logo {
+        width: 70px;
+        top: 10px;
+        right: 10px;
+      }
+    }
+
     .pidm-nrs2 {
       position: absolute;
-      top: 28px;
-      left: 20px;
-      height: 40px;
-      width: auto;
+      top: 28px;  /* Larger than 7px due to different logo size than ASEAN's */
+      left: 20px;  /* Left instead of right */
+      height: 40px;  /* Set height to control size */
+      width: auto;  /* Let width scale automatically */
       z-index: 10;
     }
 
-    /* Mobile responsive */
+    /* Make both logos responsive on mobile */
     @media (max-width: 768px) {
       .asean-logo {
         width: 60px;
         top: 6px;
         right: 10px;
-      }
+    }
   
       .pidm-nrs2 {
-        height: 25px;
-        top: 12px;
-        left: 10px;
+        height: 25px;  /* Smaller on mobile */
+          top: 12px;
+          left: 10px;
       }
+    }
 
+    /* Enhanced Mobile Centering */
+    @media (max-width: 768px) {
       body {
         padding: 5px;
         align-items: flex-start;
         padding-top: 20px;
-      }
-  
-      .widget-container {
-        margin: 0;
-        padding: 20px;
-        max-width: 100%;
-        width: calc(100% - 10px);
-        box-sizing: border-box;
-      }
-  
-      .landing-container {
-        padding: 20px 10px;
-      }
-  
-      .landing-title {
-        font-size: 2.2rem;
-      }
-  
-      .feature-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
     }
+  
+    .widget-container {
+      margin: 0;
+      padding: 20px;
+      max-width: 100%;
+      width: calc(100% - 10px);
+      box-sizing: border-box;
+    }
+  
+    .landing-container {
+      padding: 20px 10px;
+    }
+  
+    .landing-title {
+      font-size: 2.2rem;
+    }
+  
+    .feature-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+  }
 
-    @media (max-width: 480px) {
-      body {
-        padding: 2px;
-      }
-  
-      .widget-container {
-        width: calc(100% - 4px);
-        padding: 15px;
-      }
-  
-      .landing-title {
-        font-size: 1.8rem;
-      }
+  /* Extra small screens */
+  @media (max-width: 480px) {
+    body {
+      padding: 2px;
     }
+  
+    .widget-container {
+      width: calc(100% - 4px);
+      padding: 15px;
+    }
+  
+    .landing-title {
+      font-size: 1.8rem;
+    }
+  }
 
     /* Main Page Styles */
     h1 {
@@ -428,6 +452,10 @@
       background-color: #eef5ff;
       border-color: #667eea;
     }
+    .country-option .flag {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
     .start-family-scenario-btn {
       background: linear-gradient(135deg, #10b981, #059669);
       color: white;
@@ -477,9 +505,10 @@
     <!-- PAGE 0: Landing Page -->
     <div class="page active" id="page0">
       <img src="https://raw.githubusercontent.com/Piperzero/NRS2025/main/asean-logo.png" alt="ASEAN Malaysia 2025" class="asean-logo">
-      <img src="https://raw.githubusercontent.com/Piperzero/NRS2025/main/pidm-nrs2.png" alt="PIDM NRS 2025" class="pidm-nrs2">
+       <img src="https://raw.githubusercontent.com/Piperzero/NRS2025/main/pidm-nrs2.png" alt="PIDM NRS 2025" class="pidm-nrs2">
       <div class="landing-container">
         <div class="landing-header">
+          <!-- <div class="nrs-badge">NRS 2025 Official Tool</div> --> 
           <h1 class="landing-title">ASEAN Coverage Calculator</h1>
           <p class="landing-subtitle">ASEAN+3 Deposit Insurance Protection</p>
           <p class="landing-tagline">Discover how your deposits are protected in 13 jurisdictions</p>
@@ -583,7 +612,7 @@
           </div>
         </div>
       </div>
-      <div class="coverage-box" id="regionalCoverage" style="display: none; margin-top: 50px;">
+      <div class="coverage-box" id="regionalCoverage" style="display: none; margin-top: 50px">
         <h2>🌍 Regional Coverage Comparison</h2>
         <div id="regionalResults"></div>
       </div>
@@ -592,9 +621,11 @@
           <div class="dashboard-header">
             <h2 class="dashboard-title">👨‍👩‍👧‍👦 Let's travel back to Malaysia...</h2>
           </div>
+          <!-- Malaysia map -->
           <div style="text-align: center; margin: 20px 0;">
             <img src="https://raw.githubusercontent.com/Piperzero/NRS2025/main/my-map.png" alt="Malaysia Map" style="max-width: 50%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           </div>
+
           <div class="summary-card" style="max-width: none; text-align: center; padding: 25px;">
             <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #555;">
               See how my family is protected by PIDM.
@@ -711,6 +742,7 @@
 
         <div id="step4PathB" class="summary-card" style="max-width: none; text-align: left; padding: 25px; display: none;">
           <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">📊</div>
+          <!-- <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">🤝</div> -->
           <div class="scenario-content">
             <h3 style="margin: 0 0 15px 0; color: #333; font-size: 18px;">Step 4: Joint Account Distribution</h3>
             <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #555;">
@@ -791,6 +823,7 @@
 
       <div class="scenario-step" id="step6Card" style="display: none;">
         <div class="summary-card" style="max-width: none; text-align: center; padding: 35px;">
+          <!-- <div class="summary-icon" style="margin-bottom: 20px; font-size: 48px;">🎯</div> -->
           <h3 style="margin: 0 0 25px 0; color: #333; font-size: 24px;">Step 6: Family Deposit Coverage Summary</h3>
           
           <div class="summary-dashboard" style="margin-bottom: 30px; text-align: left;">
@@ -895,7 +928,6 @@
     }
 
     function startTool() {
-      console.log('startTool called');
       document.getElementById('page0').classList.remove('active');
       document.getElementById('page1').classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -939,16 +971,19 @@
         const convertedAmount = amount * exchangeRates[country.currency];
   
         if (convertedAmount < 100000) {
-          actualCoverage = 0;
-          isFullyCovered = false;
-          coveragePercentage = 0;
+         // Below minimum - no coverage
+         actualCoverage = 0;
+         isFullyCovered = false;
+         coveragePercentage = 0;
         } else if (convertedAmount <= 1000000) {
-          const coverageInMMK = convertedAmount * 0.6;
-          actualCoverage = coverageInMMK / exchangeRates[country.currency];
-          isFullyCovered = false;
-          coveragePercentage = 60;
+         // Within range - 60% coverage
+         const coverageInMMK = convertedAmount * 0.6;
+         actualCoverage = coverageInMMK / exchangeRates[country.currency];
+         isFullyCovered = false;
+         coveragePercentage = 60;
         } else {
-          const coverageInMMK = 1000000 * 0.6;
+          // Above limit - 60% of first 1,000,000 MMK only
+          const coverageInMMK = 1000000 * 0.6; // 600,000 MMK
           actualCoverage = coverageInMMK / exchangeRates[country.currency];
           isFullyCovered = false;
           const actualCoveragePercentage = (coverageInMMK / convertedAmount) * 100;
@@ -997,6 +1032,7 @@
 
       coverageBox.style.display = 'block';
       
+      // Show/hide Myanmar footnote
       const myanmarFootnote = document.getElementById('myanmarFootnote');
       if (myanmarFootnote) {
         myanmarFootnote.style.display = country.name === 'Myanmar' ? 'block' : 'none';
@@ -1016,7 +1052,7 @@
       countries.forEach(country => {
         const limitInMYR = country.currency === 'MYR' ? country.limit : country.limit / exchangeRates[country.currency];
         let isFullyCovered;
-        let hasCoverage = true;
+        let hasCoverage = true; //This variable is to track if there's any coverage
 
         if (country.name === 'Myanmar') {
           const convertedAmount = amount * exchangeRates[country.currency];
@@ -1025,13 +1061,12 @@
             isFullyCovered = false;
           } else if (convertedAmount <= 1000000) {
             hasCoverage = true;
-            isFullyCovered = false;
+            isFullyCovered = false; // Myanmar is never fully covered due to the 60% rule
+        //  }
           } else {
-            hasCoverage = true;
+            hasCoverage = true; // All other countries have coverage if amount is positive
             isFullyCovered = amount <= limitInMYR;
           }
-        } else {
-          isFullyCovered = amount <= limitInMYR;
         }
 
         const gridItem = document.createElement('div');
@@ -1061,25 +1096,26 @@
             borderColor = '#10b981';
             backgroundColor = '#f0fdf4';
             textColor = '#10b981';
-          } else {
-            statusIcon = '🟡';
-            statusText = 'Partially Covered';
-            borderColor = '#f59e0b';
-            backgroundColor = '#fffbeb';
-            textColor = '#f59e0b';
-          }
-        }
+        } else {
+          statusIcon = '🟡';
+          statusText = 'Partially Covered';
+          borderColor = '#f59e0b';
+          backgroundColor = '#fffbeb';
+          textColor = '#f59e0b';
+        }  
+      }  
 
         gridItem.style.border = `2px solid ${borderColor}`;
         gridItem.style.backgroundColor = backgroundColor;
-        
+
         gridItem.innerHTML = `
           <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px;">${country.name}</div>
           <div style="font-size: 12px; color: ${textColor}; font-weight: 600;">
             ${statusIcon} ${statusText}
           </div>
         `;
-        
+
+
         gridContainer.appendChild(gridItem);
       });
       
@@ -1475,8 +1511,7 @@
           totalUninsured += uninsured;
         }
         
-        insights = `You distributed MYR ${depositAmount.toLocaleString()} equally across ${householdMembers} joint accounts (${formatCurrency(amountPerAccount, 'MYR')} each). ` +
-                  (totalUninsured > 0 ?
+        insights = `You distributed MYR ${depositAmount.toLocaleString()} equally across ${householdMembers} joint accounts (${formatCurrency(amountPerAccount, 'MYR')} each). ` + (totalUninsured > 0 ?
                     `Each account has MYR ${Math.min(amountPerAccount, malaysiaLimit).toLocaleString()} protected, with ${formatCurrency(totalUninsured/householdMembers, 'MYR')} uninsured per account.` :
                     `All joint accounts are fully protected under PIDM coverage. `);
                     
@@ -1530,35 +1565,32 @@
     }
 
     // Initialize on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM loaded, initializing...');
-      renderCountryGrid();
+    renderCountryGrid();
 
-      // Add event listener for amount input
-      if (amountInput) {
-        amountInput.addEventListener('input', function() {
-          const amount = parseFloat(this.value);
-          if (amount && amount > 0) {
-            summaryAmount.textContent = formatCurrency(amount, 'MYR');
-            
-            // Trigger country selection update if a country is already selected
-            const selectedCountry = document.querySelector('.country-option.selected');
-            if (selectedCountry) {
-              const countryName = selectedCountry.textContent.trim();
-              const country = countries.find(c => c.name === countryName);
-              if (country) {
-                selectCountry(country, selectedCountry);
-              }
+    // Add event listener for amount input to trigger calculations - ASA 2025
+    if (amountInput) {
+      amountInput.addEventListener('input', function() {
+        const amount = parseFloat(this.value);
+        if (amount && amount > 0) {
+          summaryAmount.textContent = formatCurrency(amount, 'MYR');
+          
+          // Trigger country selection update if a country is already selected
+          const selectedCountry = document.querySelector('.country-option.selected');
+          if (selectedCountry) {
+            const countryName = selectedCountry.textContent.trim();
+            const country = countries.find(c => c.name === countryName);
+            if (country) {
+              selectCountry(country, selectedCountry);
             }
-          } else {
-            summaryAmount.textContent = 'MYR 0.00';
-            if (coverageBox) coverageBox.style.display = 'none';
-            if (regionalCoverage) regionalCoverage.style.display = 'none';
-            if (document.getElementById('familyScenarioPrompt')) document.getElementById('familyScenarioPrompt').style.display = 'none';
           }
-        });
-      }
-    });
+        } else {
+          summaryAmount.textContent = 'MYR 0.00';
+          if (coverageBox) coverageBox.style.display = 'none';
+          if (regionalCoverage) regionalCoverage.style.display = 'none';
+          if (document.getElementById('familyScenarioPrompt')) document.getElementById('familyScenarioPrompt').style.display = 'none';
+        }
+      });
+    }
   </script>
 </body>
 </html>
