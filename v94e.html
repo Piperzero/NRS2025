@@ -1055,11 +1055,18 @@
 
         if (country.name === 'Myanmar') {
           const convertedAmount = amount * exchangeRates[country.currency];
-          isFullyCovered = convertedAmount >= 100000 && convertedAmount <= 1000000 ? false : false;
-        } else {
-          isFullyCovered = amount <= limitInMYR;
-        }
-        
+          if (convertedAmount < 100000) {
+            hasCoverage = false;
+            isFullyCovered = false;
+          } else if (convertedAmount <= 1000000) {
+            hasCoverage = true;
+            isFullyCovered = false;
+          } else {
+            hasCoverage = true;
+            isFullyCovered = amount <= limitInMYR;
+          }  
+        } 
+      
         const gridItem = document.createElement('div');
         gridItem.className = 'country-option';
         gridItem.style.cursor = 'default';
