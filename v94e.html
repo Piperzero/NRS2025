@@ -924,7 +924,7 @@
 
     // Utility functions
     function formatCurrency(value, currency = 'MYR') {
-      return currency + ' ' + parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+      return currency + ' ' + parseFloat(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
     function startTool() {
