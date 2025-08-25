@@ -1074,26 +1074,44 @@
         gridItem.style.border = isFullyCovered ? '2px solid #10b981' : '2px solid #f59e0b';
         gridItem.style.backgroundColor = isFullyCovered ? '#f0fdf4' : '#fffbeb';
         
-        let statusIcon, statusText;
+        let statusIcon, statusText, borderColor, backgroundColor, textColor;
+
         if (country.name === 'Myanmar') {
-          const convertedAmount = amount * exchangeRates[country.currency];
-          if (convertedAmount < 100000 || convertedAmount > 1000000) {
+          if (!hasCoverage) {
             statusIcon = '⛔';
             statusText = 'No Coverage';
-            gridItem.style.border = '2px solid #ef4444';
-            gridItem.style.backgroundColor = '#fef2f2';
+            borderColor = '#ef4444';
+            backgroundColor = '#fef2f2';
+            textColor = '#ef4444';
           } else {
             statusIcon = '🟡';
             statusText = '60% Covered';
+            borderColor = "#f59e0b';
+            backgroundColor = '#fffbeb';
+            textColor = '#f59e0b';
           }
         } else {
-          statusIcon = isFullyCovered ? '✅' : '🟡';
-          statusText = isFullyCovered ? 'Fully Covered' : 'Partially Covered';
+          if (isFullyCovered) {
+            statusIcon = '✅';
+            statusText = 'Fully Covered';
+            borderColor = '#10b981';
+            backgroundColor = '#f0fdf4';
+            textColor = '#10b981';
+        } else {
+          statusIcon = '🟡';
+          statusText = 'Partially Covered';
+          borderColor = '#f59e0b';
+          backgroundColor = '#fffbeb';
+          textColor = '#f59e0b';
         }
+      }   
+
+        gridItem.style.border = `2px solid ${borderColor}`;
+        gridItem.style.backgroundColor = backgroundColor;
         
         gridItem.innerHTML = `
           <div style="font-weight: bold; margin-bottom: 8px; font-size: 14px;">${country.name}</div>
-          <div style="font-size: 12px; color: ${isFullyCovered ? '#10b981' : (country.name === 'Myanmar' && (amount * exchangeRates[country.currency] < 100000 || amount * exchangeRates[country.currency] > 1000000) ? '#ef4444' : '#f59e0b')}; font-weight: 600;">
+          <div style="font-size: 12px; color: ${textColor}; font-weight: 600;">
             ${statusIcon} ${statusText}
           </div>
         `;
