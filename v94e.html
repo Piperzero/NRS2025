@@ -130,17 +130,6 @@
       box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
     }
     
-    .nrs-badge {
-      display: inline-block;
-      background: #5A7ED8;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-    
     .disclaimer-section {
       margin-top: 40px;
       text-align: center;
@@ -168,91 +157,78 @@
 
     .asean-logo {
       position: absolute;
-      top: 7px; /* Changed from 20px to 7px */
+      top: 7px;
       right: 30px;
       width: 120px;
       height: auto;
       z-index: 10;
     }
 
-    /* Make logo responsive on mobile */
-    @media (max-width: 768px) {
-      .asean-logo {
-        width: 70px;
-        top: 10px;
-        right: 10px;
-      }
-    }
-
     .pidm-nrs2 {
       position: absolute;
-      top: 28px;  /* Larger than 7px due to different logo size than ASEAN's */
-      left: 20px;  /* Left instead of right */
-      height: 40px;  /* Set height to control size */
-      width: auto;  /* Let width scale automatically */
+      top: 28px;
+      left: 20px;
+      height: 40px;
+      width: auto;
       z-index: 10;
     }
 
-    /* Make both logos responsive on mobile */
+    /* Mobile responsive */
     @media (max-width: 768px) {
       .asean-logo {
         width: 60px;
         top: 6px;
         right: 10px;
-    }
+      }
   
       .pidm-nrs2 {
-        height: 25px;  /* Smaller on mobile */
-          top: 12px;
-          left: 10px;
+        height: 25px;
+        top: 12px;
+        left: 10px;
       }
-    }
 
-    /* Enhanced Mobile Centering */
-    @media (max-width: 768px) {
       body {
         padding: 5px;
         align-items: flex-start;
         padding-top: 20px;
-    }
+      }
   
-    .widget-container {
-      margin: 0;
-      padding: 20px;
-      max-width: 100%;
-      width: calc(100% - 10px);
-      box-sizing: border-box;
-    }
+      .widget-container {
+        margin: 0;
+        padding: 20px;
+        max-width: 100%;
+        width: calc(100% - 10px);
+        box-sizing: border-box;
+      }
   
-    .landing-container {
-      padding: 20px 10px;
-    }
+      .landing-container {
+        padding: 20px 10px;
+      }
   
-    .landing-title {
-      font-size: 2.2rem;
-    }
+      .landing-title {
+        font-size: 2.2rem;
+      }
   
-    .feature-grid {
-      grid-template-columns: 1fr;
-      gap: 15px;
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
     }
-  }
 
-  /* Extra small screens */
-  @media (max-width: 480px) {
-    body {
-      padding: 2px;
-    }
+    @media (max-width: 480px) {
+      body {
+        padding: 2px;
+      }
   
-    .widget-container {
-      width: calc(100% - 4px);
-      padding: 15px;
-    }
+      .widget-container {
+        width: calc(100% - 4px);
+        padding: 15px;
+      }
   
-    .landing-title {
-      font-size: 1.8rem;
+      .landing-title {
+        font-size: 1.8rem;
+      }
     }
-  }
 
     /* Main Page Styles */
     h1 {
@@ -452,10 +428,6 @@
       background-color: #eef5ff;
       border-color: #667eea;
     }
-    .country-option .flag {
-      font-size: 32px;
-      margin-bottom: 8px;
-    }
     .start-family-scenario-btn {
       background: linear-gradient(135deg, #10b981, #059669);
       color: white;
@@ -505,10 +477,9 @@
     <!-- PAGE 0: Landing Page -->
     <div class="page active" id="page0">
       <img src="https://raw.githubusercontent.com/Piperzero/NRS2025/main/asean-logo.png" alt="ASEAN Malaysia 2025" class="asean-logo">
-       <img src="https://raw.githubusercontent.com/Piperzero/NRS2025/main/pidm-nrs2.png" alt="PIDM NRS 2025" class="pidm-nrs2">
+      <img src="https://raw.githubusercontent.com/Piperzero/NRS2025/main/pidm-nrs2.png" alt="PIDM NRS 2025" class="pidm-nrs2">
       <div class="landing-container">
         <div class="landing-header">
-          <!-- <div class="nrs-badge">NRS 2025 Official Tool</div> --> 
           <h1 class="landing-title">ASEAN Coverage Calculator</h1>
           <p class="landing-subtitle">ASEAN+3 Deposit Insurance Protection</p>
           <p class="landing-tagline">Discover how your deposits are protected in 13 jurisdictions</p>
@@ -621,261 +592,15 @@
           <div class="dashboard-header">
             <h2 class="dashboard-title">👨‍👩‍👧‍👦 Let's travel back to Malaysia...</h2>
           </div>
-          <!-- Malaysia map -->
           <div style="text-align: center; margin: 20px 0;">
             <img src="https://raw.githubusercontent.com/Piperzero/NRS2025/main/my-map.png" alt="Malaysia Map" style="max-width: 50%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           </div>
-
           <div class="summary-card" style="max-width: none; text-align: center; padding: 25px;">
             <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #555;">
               See how my family is protected by PIDM.
             </p>
             <button class="start-family-scenario-btn" onclick="goToFamilyScenario()">
               Start Family Scenario →
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PAGE 2: Family Deposit Coverage Scenario -->
-    <div class="page" id="page2">
-      <button class="back-button" onclick="goBackToMain()">← Back to Main Tool</button>
-      <div class="page-header">
-        <h1>👨‍👩‍👧‍👦 PIDM Coverage Calculator :<br>Family Edition</h1>
-        <p style="color: #666; margin: 10px 0 0 0;">Exploring deposit insurance coverage by PIDM for your family with <strong id="familyAmountDisplay">MYR 0.00</strong></p>
-      </div>
-      
-      <div class="scenario-step" id="step1Card">
-        <div class="summary-card" style="max-width: none; text-align: left; padding: 25px;">
-          <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">🌺</div>
-          <div class="scenario-content">
-            <h3 style="margin: 0 0 15px 0; color: #333; font-size: 18px;">Step 1: </h3>
-            <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #555;">
-              You're now in Malaysia. You have <strong style="color: #3b82f6;" id="familyAmount">MYR 0.00</strong> and planning to save in PIDM's member banks.
-            </p>
-          </div>
-        </div>
-        <div style="text-align: center; margin-top: 20px;">
-          <button onclick="showStep2()" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
-            Continue to Step 2 →
-          </button>
-        </div>
-      </div>
-
-      <div class="scenario-step" id="step2Card" style="display: none;">
-        <div class="summary-card" style="max-width: none; text-align: left; padding: 25px;">
-          <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">👥</div>
-          <div class="scenario-content">
-            <h3 style="margin: 0 0 15px 0; color: #333; font-size: 18px;">Step 2: Family Size</h3>
-            <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #555;">
-              How many family members do you have in your household, excluding yourself?
-            </p>
-            <div class="form-group" style="margin-bottom: 0;">
-              <select id="householdMembers" style="width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #e2e8f0; font-size: 16px; background: white; transition: border-color 0.3s ease;">
-                <option value="">Select number of family members</option>
-                <option value="1">1 family member</option>
-                <option value="2">2 family members</option>
-                <option value="3">3 family members</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div style="text-align: center; margin-top: 20px;">
-          <button id="step2Continue" onclick="showStep3()" disabled style="background: #9ca3af; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: not-allowed; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3);">
-            Continue to Step 3 →
-          </button>
-        </div>
-      </div>
-
-      <div class="scenario-step" id="step3Card" style="display: none;">
-        <div class="summary-card" style="max-width: none; text-align: left; padding: 25px;">
-          <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">🤝</div>
-          <div class="scenario-content">
-            <h3 style="margin: 0 0 15px 0; color: #333; font-size: 18px;">Step 3: Joint Account Preference</h3>
-            <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #555;">
-              Would you like to open a joint account with each of your family members?
-            </p>
-            <div class="form-group" style="margin-bottom: 0;">
-              <select id="jointAccountChoice" style="width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #e2e8f0; font-size: 16px; background: white; transition: border-color 0.3s ease;">
-                <option value="">Select your preference</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select>
-            </div>
-          </div>
-        </div>
-        <div style="text-align: center; margin-top: 20px;">
-          <button id="step3Continue" onclick="showStep4()" disabled style="background: #9ca3af; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: not-allowed; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3);">
-            Continue to Step 4 →
-          </button>
-        </div>
-      </div>
-
-      <div class="scenario-step" id="step4Card" style="display: none;">
-        <div id="step4PathA" class="summary-card" style="max-width: none; text-align: left; padding: 25px; display: none;">
-          <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">💳</div>
-          <div class="scenario-content">
-            <h3 style="margin: 0 0 15px 0; color: #333; font-size: 18px;">Step 4: Individual Account Summary</h3>
-            <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #555;" id="individualSummaryText">
-              You decided NOT to open joint accounts, instead you open your own deposit account.
-            </p>
-            <div class="coverage-details-grid" style="margin-top: 20px;">
-              <div class="detail-card">
-                <div class="detail-icon">🛡️</div>
-                <div class="detail-label">Protected Deposits</div>
-                <div class="detail-value" id="protectedAmount">MYR 0.00</div>
-              </div>
-              <div class="detail-card">
-                <div class="detail-icon">⚠️</div>
-                <div class="detail-label">Uninsured Amount</div>
-                <div class="detail-value" id="uninsuredAmount">MYR 0.00</div>
-              </div>
-            </div>
-          </div>
-          <div style="text-align: center; margin-top: 20px;">
-            <button onclick="showStep5()" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
-              Continue to Step 5 →
-            </button>
-          </div>
-        </div>
-
-        <div id="step4PathB" class="summary-card" style="max-width: none; text-align: left; padding: 25px; display: none;">
-          <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">📊</div>
-          <!-- <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">🤝</div> -->
-          <div class="scenario-content">
-            <h3 style="margin: 0 0 15px 0; color: #333; font-size: 18px;">Step 4: Joint Account Distribution</h3>
-            <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #555;">
-              Do you want to equally distribute your deposit amount among all your joint accounts?
-            </p>
-            <div class="form-group" style="margin-bottom: 0;">
-              <select id="equalSplitChoice" style="width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #e2e8f0; font-size: 16px; background: white; transition: border-color 0.3s ease;">
-                <option value="">Select your preference</option>
-                <option value="Yes">Yes</option>
-                <option value="No">No</option>
-              </select>
-            </div>
-          </div>
-          <div style="text-align: center; margin-top: 20px;">
-            <button id="step4Continue" onclick="showStep5()" disabled style="background: #9ca3af; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: not-allowed; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3);">
-              Continue to Step 5 →
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="scenario-step" id="step5Card" style="display: none;">
-        <div id="step5PathC" class="summary-card" style="max-width: none; text-align: left; padding: 25px; display: none;">
-          <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">⚖️</div>
-          <div class="scenario-content">
-            <h3 style="margin: 0 0 15px 0; color: #333; font-size: 18px;">Step 5: Equal Split Analysis</h3>
-            <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #555;" id="equalSplitSummaryText">
-              You decided to open joint accounts and equally split the deposit amount with each of them.
-            </p>
-            <div class="summary-dashboard" style="margin-top: 20px;">
-              <div class="dashboard-header">
-                <h4 style="margin: 0; color: #333;">Deposit Insurance Coverage: Joint Account</h4>
-              </div>
-              <div id="equalSplitResults" class="summary-grid"></div>
-            </div>
-          </div>
-          <div style="text-align: center; margin-top: 20px;">
-            <button onclick="showStep6()" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);">
-              Continue to Step 6 →
-            </button>
-          </div>
-        </div>
-
-        <div id="step5PathD" class="summary-card" style="max-width: none; text-align: left; padding: 25px; display: none;">
-          <div class="summary-icon" style="float: left; margin-right: 15px; margin-bottom: 0;">📊</div>
-          <div class="scenario-content">
-            <h3 style="margin: 0 0 15px 0; color: #333; font-size: 18px;">Step 5: Custom Split Allocation</h3>
-            <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #555;">
-              Enter the percentage of deposit amount to be placed into each joint account. The total must equal 100%.
-            </p>
-            <div id="percentageInputs" style="margin-bottom: 20px;"></div>
-            <div style="text-align: center; font-size: 14px; color: #666; margin-bottom: 15px;">
-              Total: <span id="totalPercentage" style="font-weight: bold; color: #333;">0%</span>
-              <span id="percentageStatus" style="margin-left: 10px;"></span>
-            </div>
-            <div id="unequalSplitResults" style="display: none;">
-              <p style="margin: 0 0 20px 0; font-size: 16px; line-height: 1.6; color: #555;" id="unequalSplitSummaryText"></p>
-              <div class="summary-dashboard">
-                <div class="dashboard-header">
-                  <h4 style="margin: 0; color: #333;">Deposit Insurance Coverage: Joint Account</h4>
-                </div>
-                <div id="unequalSplitResultsGrid" class="summary-grid"></div>
-                <div class="detail-card" style="margin-top: 15px; max-width: 300px; margin-left: auto; margin-right: auto;">
-                  <div class="detail-icon">⚠️</div>
-                  <div class="detail-label">Total Uninsured Amount</div>
-                  <div class="detail-value" id="totalUninsuredAmount">MYR 0.00</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style="text-align: center; margin-top: 20px;">
-            <button id="step5Continue" onclick="showStep6()" disabled style="background: #9ca3af; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: not-allowed; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(156, 163, 175, 0.3);">
-              Continue to Step 6 →
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <div class="scenario-step" id="step6Card" style="display: none;">
-        <div class="summary-card" style="max-width: none; text-align: center; padding: 35px;">
-          <!-- <div class="summary-icon" style="margin-bottom: 20px; font-size: 48px;">🎯</div> -->
-          <h3 style="margin: 0 0 25px 0; color: #333; font-size: 24px;">Step 6: Family Deposit Coverage Summary</h3>
-          
-          <div class="summary-dashboard" style="margin-bottom: 30px; text-align: left;">
-            <div class="dashboard-header">
-              <h4 style="margin: 0; color: #333;">📋 Your Deposit Strategy</h4>
-            </div>
-            <div style="padding: 20px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 12px;">
-              <div style="margin-bottom: 15px;"><strong>💰 Total Deposit Amount:</strong> <span id="finalDepositAmount" style="color: #3b82f6;">MYR 0.00</span></div>
-              <div style="margin-bottom: 15px;"><strong>👥 Family Members:</strong> <span id="finalFamilyMembers">0</span></div>
-              <div style="margin-bottom: 15px;"><strong>📈 Account Strategy:</strong> <span id="finalAccountStrategy">-</span></div>
-              <div style="margin-bottom: 0;"><strong>📊 Distribution Method:</strong> <span id="finalDistribution">-</span></div>
-            </div>
-          </div>
-
-          <div class="summary-dashboard" style="margin-bottom: 30px; text-align: left;">
-            <div class="dashboard-header">
-              <h4 style="margin: 0; color: #333;">🛡️ Deposit insurance coverage for your family fund</h4>
-            </div>
-            <div class="summary-grid">
-              <div class="summary-card" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);">
-                <div class="summary-icon" style="color: #10b981;">✅</div>
-                <div class="summary-label">Total Protected</div>
-                <div class="summary-value" id="finalProtectedAmount">MYR 0.00</div>
-              </div>
-              <div class="summary-card" style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);">
-                <div class="summary-icon" style="color: #f59e0b;">⚠️</div>
-                <div class="summary-label">Total Uninsured</div>
-                <div class="summary-value" id="finalUninsuredAmount">MYR 0.00</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="summary-dashboard" style="margin-bottom: 30px; text-align: left;">
-            <div class="dashboard-header">
-              <h4 style="margin: 0; color: #333;">💡 Key Insights</h4>
-            </div>
-            <div id="finalInsights" style="padding: 20px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 12px; color: #333; text-align: justify;">
-            </div>
-          </div>
-
-          <div style="margin-bottom: 30px; padding: 15px; background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); border-radius: 12px; border-left: 4px solid #3b82f6;">
-            <p style="margin: 0; font-size: 14px; color: #555;">
-              📚 For more information, please visit us at the NRS ASEAN Booth or <a href="https://www.pidm.gov.my" target="_blank" style="color: #3b82f6; text-decoration: none; font-weight: 600;">www.pidm.gov.my</a>
-            </p>
-          </div>
-
-          <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-            <button onclick="startOver()" style="background: linear-gradient(135deg, #10b981, #059669); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
-              🔄 Start Over From Beginning
-            </button>
-            <button onclick="goBackToMain()" style="background: linear-gradient(135deg, #6b7280, #4b5563); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);">
-              🏠 Back to Main Tool
             </button>
           </div>
         </div>
@@ -928,6 +653,7 @@
     }
 
     function startTool() {
+      console.log('startTool called');
       document.getElementById('page0').classList.remove('active');
       document.getElementById('page1').classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -971,19 +697,16 @@
         const convertedAmount = amount * exchangeRates[country.currency];
   
         if (convertedAmount < 100000) {
-         // Below minimum - no coverage
-         actualCoverage = 0;
-         isFullyCovered = false;
-         coveragePercentage = 0;
+          actualCoverage = 0;
+          isFullyCovered = false;
+          coveragePercentage = 0;
         } else if (convertedAmount <= 1000000) {
-         // Within range - 60% coverage
-         const coverageInMMK = convertedAmount * 0.6;
-         actualCoverage = coverageInMMK / exchangeRates[country.currency];
-         isFullyCovered = false;
-         coveragePercentage = 60;
+          const coverageInMMK = convertedAmount * 0.6;
+          actualCoverage = coverageInMMK / exchangeRates[country.currency];
+          isFullyCovered = false;
+          coveragePercentage = 60;
         } else {
-          // Above limit - 60% of first 1,000,000 MMK only
-          const coverageInMMK = 1000000 * 0.6; // 600,000 MMK
+          const coverageInMMK = 1000000 * 0.6;
           actualCoverage = coverageInMMK / exchangeRates[country.currency];
           isFullyCovered = false;
           const actualCoveragePercentage = (coverageInMMK / convertedAmount) * 100;
@@ -1032,7 +755,6 @@
 
       coverageBox.style.display = 'block';
       
-      // Show/hide Myanmar footnote
       const myanmarFootnote = document.getElementById('myanmarFootnote');
       if (myanmarFootnote) {
         myanmarFootnote.style.display = country.name === 'Myanmar' ? 'block' : 'none';
@@ -1065,14 +787,14 @@
           } else {
             hasCoverage = true;
             isFullyCovered = amount <= limitInMYR;
-          }  
-        } 
-      
+          }
+        } else {
+          isFullyCovered = amount <= limitInMYR;
+        }
+
         const gridItem = document.createElement('div');
         gridItem.className = 'country-option';
         gridItem.style.cursor = 'default';
-        gridItem.style.border = isFullyCovered ? '2px solid #10b981' : '2px solid #f59e0b';
-        gridItem.style.backgroundColor = isFullyCovered ? '#f0fdf4' : '#fffbeb';
         
         let statusIcon, statusText, borderColor, backgroundColor, textColor;
 
@@ -1086,7 +808,7 @@
           } else {
             statusIcon = '🟡';
             statusText = '60% Covered';
-            borderColor = "#f59e0b';
+            borderColor = '#f59e0b';
             backgroundColor = '#fffbeb';
             textColor = '#f59e0b';
           }
@@ -1097,14 +819,14 @@
             borderColor = '#10b981';
             backgroundColor = '#f0fdf4';
             textColor = '#10b981';
-        } else {
-          statusIcon = '🟡';
-          statusText = 'Partially Covered';
-          borderColor = '#f59e0b';
-          backgroundColor = '#fffbeb';
-          textColor = '#f59e0b';
+          } else {
+            statusIcon = '🟡';
+            statusText = 'Partially Covered';
+            borderColor = '#f59e0b';
+            backgroundColor = '#fffbeb';
+            textColor = '#f59e0b';
+          }
         }
-      }   
 
         gridItem.style.border = `2px solid ${borderColor}`;
         gridItem.style.backgroundColor = backgroundColor;
@@ -1130,468 +852,40 @@
         return;
       }
       
-      window.depositAmount = amount;
-      document.getElementById('familyAmount').textContent = formatCurrency(amount, 'MYR');
-      document.getElementById('familyAmountDisplay').textContent = formatCurrency(amount, 'MYR');
-      
-      document.getElementById('page1').classList.remove('active');
-      document.getElementById('page2').classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function goBackToMain() {
-      window.depositAmount = null;
-      window.householdMembers = null;
-      window.jointAccountChoice = null;
-      window.equalSplitChoice = null;
-      window.customPercentages = null;
-      
-      document.getElementById('step1Card').style.display = 'block';
-      document.getElementById('step2Card').style.display = 'none';
-      document.getElementById('step3Card').style.display = 'none';
-      document.getElementById('step4Card').style.display = 'none';
-      document.getElementById('step5Card').style.display = 'none';
-      document.getElementById('step6Card').style.display = 'none';
-      
-      const householdSelect = document.getElementById('householdMembers');
-      if (householdSelect) householdSelect.value = '';
-      
-      const jointSelect = document.getElementById('jointAccountChoice');
-      if (jointSelect) jointSelect.value = '';
-      
-      const equalSplitSelect = document.getElementById('equalSplitChoice');
-      if (equalSplitSelect) equalSplitSelect.value = '';
-      
-      document.getElementById('page2').classList.remove('active');
-      document.getElementById('page1').classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function showStep2() {
-      document.getElementById('step1Card').style.display = 'none';
-      document.getElementById('step2Card').style.display = 'block';
-      
-      const householdSelect = document.getElementById('householdMembers');
-      householdSelect.replaceWith(householdSelect.cloneNode(true));
-      
-      document.getElementById('householdMembers').addEventListener('change', function() {
-        const step2Button = document.getElementById('step2Continue');
-        if (this.value) {
-          step2Button.disabled = false;
-          step2Button.style.background = 'linear-gradient(135deg, #3b82f6, #1d4ed8)';
-          step2Button.style.cursor = 'pointer';
-          step2Button.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
-        } else {
-          step2Button.disabled = true;
-          step2Button.style.background = '#9ca3af';
-          step2Button.style.cursor = 'not-allowed';
-          step2Button.style.boxShadow = '0 4px 12px rgba(156, 163, 175, 0.3)';
-        }
-      });
-    }
-
-    function showStep3() {
-      const householdMembers = document.getElementById('householdMembers').value;
-      if (!householdMembers) {
-        alert('Please select the number of family members first.');
-        return;
-      }
-      
-      window.householdMembers = parseInt(householdMembers);
-      document.getElementById('step2Card').style.display = 'none';
-      document.getElementById('step3Card').style.display = 'block';
-      
-      const jointSelect = document.getElementById('jointAccountChoice');
-      if (jointSelect) {
-        jointSelect.replaceWith(jointSelect.cloneNode(true));
-        
-        document.getElementById('jointAccountChoice').addEventListener('change', function() {
-          const step3Button = document.getElementById('step3Continue');
-          if (this.value) {
-            step3Button.disabled = false;
-            step3Button.style.background = 'linear-gradient(135deg, #3b82f6, #1d4ed8)';
-            step3Button.style.cursor = 'pointer';
-            step3Button.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
-          } else {
-            step3Button.disabled = true;
-            step3Button.style.background = '#9ca3af';
-            step3Button.style.cursor = 'not-allowed';
-            step3Button.style.boxShadow = '0 4px 12px rgba(156, 163, 175, 0.3)';
-          }
-        });
-      }
-    }
-
-    function showStep4() {
-      const jointAccountChoice = document.getElementById('jointAccountChoice').value;
-      if (!jointAccountChoice) return;
-      
-      window.jointAccountChoice = jointAccountChoice;
-      
-      document.getElementById('step3Card').style.display = 'none';
-      document.getElementById('step4Card').style.display = 'block';
-      
-      if (jointAccountChoice === 'No') {
-        document.getElementById('step4PathA').style.display = 'block';
-        document.getElementById('step4PathB').style.display = 'none';
-        
-        const depositAmount = window.depositAmount || 0;
-        const householdMembers = window.householdMembers || 0;
-        const malaysiaLimit = 250000;
-        
-        const protectedAmount = Math.min(depositAmount, malaysiaLimit);
-        const uninsuredAmount = Math.max(0, depositAmount - malaysiaLimit);
-        
-        document.getElementById('individualSummaryText').innerHTML = 
-          'You have <strong style="color: #3b82f6;">' + formatCurrency(depositAmount, 'MYR') + '</strong> and <strong>' + householdMembers + '</strong> family member' + (householdMembers > 1 ? 's' : '') + '. You decided NOT to open joint accounts with them, instead you open your own deposit account.';
-        
-        document.getElementById('protectedAmount').textContent = formatCurrency(protectedAmount, 'MYR');
-        document.getElementById('uninsuredAmount').textContent = formatCurrency(uninsuredAmount, 'MYR');
-        
-      } else {
-        document.getElementById('step4PathA').style.display = 'none';
-        document.getElementById('step4PathB').style.display = 'block';
-        
-        const equalSplitSelect = document.getElementById('equalSplitChoice');
-        equalSplitSelect.replaceWith(equalSplitSelect.cloneNode(true));
-        
-        document.getElementById('equalSplitChoice').addEventListener('change', function() {
-          const step4Button = document.getElementById('step4Continue');
-          if (this.value) {
-            step4Button.disabled = false;
-            step4Button.style.background = 'linear-gradient(135deg, #3b82f6, #1d4ed8)';
-            step4Button.style.cursor = 'pointer';
-            step4Button.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
-          } else {
-            step4Button.disabled = true;
-            step4Button.style.background = '#9ca3af';
-            step4Button.style.cursor = 'not-allowed';
-            step4Button.style.boxShadow = '0 4px 12px rgba(156, 163, 175, 0.3)';
-          }
-        });
-      }
-    }
-
-    function showStep5() {
-      if (window.jointAccountChoice === 'Yes') {
-        const equalSplitElement = document.getElementById('equalSplitChoice');
-        if (!equalSplitElement || !equalSplitElement.value) {
-          alert('Please select your equal split preference first.');
-          return;
-        }
-        window.equalSplitChoice = equalSplitElement.value;
-      }
-      
-      document.getElementById('step4Card').style.display = 'none';
-      document.getElementById('step5Card').style.display = 'block';
-      
-      const depositAmount = window.depositAmount || 0;
-      const householdMembers = window.householdMembers || 0;
-      const malaysiaLimit = 250000;
-      
-      if (window.jointAccountChoice === 'No') {
-        showStep6();
-        return;
-      } else if (window.equalSplitChoice === 'Yes') {
-        document.getElementById('step5PathC').style.display = 'block';
-        document.getElementById('step5PathD').style.display = 'none';
-        
-        const summaryText = document.getElementById('equalSplitSummaryText');
-        if (summaryText) {
-          summaryText.innerHTML = 
-            'You have <strong style="color: #3b82f6;">' + formatCurrency(depositAmount, 'MYR') + '</strong> and <strong>' + householdMembers + '</strong> family member' + (householdMembers > 1 ? 's' : '') + '. You decided to open joint accounts with each of them, and equally split the deposit amount with each of them.';
-        }
-        
-        const amountPerAccount = depositAmount / householdMembers;
-        const resultsContainer = document.getElementById('equalSplitResults');
-        if (resultsContainer) {
-          resultsContainer.innerHTML = '';
-          
-          for (let i = 1; i <= householdMembers; i++) {
-            const depositedAmount = amountPerAccount;
-            const protectedAmount = Math.min(amountPerAccount, malaysiaLimit);
-            const isFullyCovered = depositedAmount <= malaysiaLimit;
-            const coveragePercentage = (protectedAmount / depositedAmount) * 100;
-            const coverageStatus = isFullyCovered ? 'Fully Covered (100%)' : `Partially Covered (${coveragePercentage.toFixed(1)}%)`;
-            
-            const cardDiv = document.createElement('div');
-            cardDiv.className = 'summary-card';
-            cardDiv.innerHTML = '<div class="summary-icon">👥</div><div class="summary-label">Joint Account ' + i + '</div><div style="font-size: 14px; color: #555; margin-bottom: 4px;"><strong>Deposited:</strong> ' + formatCurrency(depositedAmount, 'MYR') + '</div><div style="font-size: 14px; color: #10b981; margin-bottom: 4px;"><strong>Protected:</strong> ' + formatCurrency(protectedAmount, 'MYR') + '</div><div style="font-size: 12px; color: ' + (isFullyCovered ? '#10b981' : '#f59e0b') + '; font-weight: 600;">' + coverageStatus + '</div>';
-            resultsContainer.appendChild(cardDiv);
-          }
-        }
-        
-      } else {
-        document.getElementById('step5PathC').style.display = 'none';
-        document.getElementById('step5PathD').style.display = 'block';
-        
-        const inputsContainer = document.getElementById('percentageInputs');
-        if (inputsContainer) {
-          inputsContainer.innerHTML = '';
-          
-          for (let i = 1; i <= householdMembers; i++) {
-            const inputDiv = document.createElement('div');
-            inputDiv.style.marginBottom = '15px';
-            inputDiv.innerHTML = '<label style="display: block; margin-bottom: 5px; font-weight: 600; color: #555;">Joint Account ' + i + ' (%)</label><input type="number" id="percentage' + i + '" min="0" max="100" step="0.1" placeholder="Enter percentage" style="width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #e2e8f0; font-size: 14px;" />';
-            inputsContainer.appendChild(inputDiv);
-          }
-          
-          setTimeout(() => {
-            for (let i = 1; i <= householdMembers; i++) {
-              const input = document.getElementById('percentage' + i);
-              if (input) {
-                input.addEventListener('input', updatePercentageTotal);
-              }
-            }
-          }, 100);
-        }
-      }
-    }
-    
-    function updatePercentageTotal() {
-      const householdMembers = window.householdMembers || 0;
-      let total = 0;
-      let allFilled = true;
-      
-      for (let i = 1; i <= householdMembers; i++) {
-        const input = document.getElementById('percentage' + i);
-        if (input) {
-          const value = parseFloat(input.value) || 0;
-          total += value;
-          if (!input.value) allFilled = false;
-        }
-      }
-      
-      const totalSpan = document.getElementById('totalPercentage');
-      if (totalSpan) {
-        totalSpan.textContent = total.toFixed(1) + '%';
-      }
-      
-      const statusSpan = document.getElementById('percentageStatus');
-      const continueButton = document.getElementById('step5Continue');
-      
-      if (total === 100 && allFilled) {
-        if (statusSpan) statusSpan.innerHTML = '<span style="color: #10b981;">✅ Valid</span>';
-        if (continueButton) {
-          continueButton.disabled = false;
-          continueButton.style.background = 'linear-gradient(135deg, #3b82f6, #1d4ed8)';
-          continueButton.style.cursor = 'pointer';
-          continueButton.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
-        }
-        
-        showUnequalSplitResults();
-      } else if (total > 100) {
-        if (statusSpan) statusSpan.innerHTML = '<span style="color: #ef4444;">❌ Too high</span>';
-        if (continueButton) {
-          continueButton.disabled = true;
-          continueButton.style.background = '#9ca3af';
-          continueButton.style.cursor = 'not-allowed';
-          continueButton.style.boxShadow = '0 4px 12px rgba(156, 163, 175, 0.3)';
-        }
-        const resultsDiv = document.getElementById('unequalSplitResults');
-        if (resultsDiv) resultsDiv.style.display = 'none';
-      } else {
-        if (statusSpan) statusSpan.innerHTML = '<span style="color: #f59e0b;">⏳ Incomplete</span>';
-        if (continueButton) {
-          continueButton.disabled = true;
-          continueButton.style.background = '#9ca3af';
-          continueButton.style.cursor = 'not-allowed';
-          continueButton.style.boxShadow = '0 4px 12px rgba(156, 163, 175, 0.3)';
-        }
-        const resultsDiv = document.getElementById('unequalSplitResults');
-        if (resultsDiv) resultsDiv.style.display = 'none';
-      }
-    }
-    
-    function showUnequalSplitResults() {
-      const depositAmount = window.depositAmount || 0;
-      const householdMembers = window.householdMembers || 0;
-      const malaysiaLimit = 250000;
-      
-      const percentages = [];
-      for (let i = 1; i <= householdMembers; i++) {
-        const input = document.getElementById('percentage' + i);
-        if (input) {
-          percentages.push(parseFloat(input.value));
-        }
-      }
-      
-      const percentageText = percentages.map((p, i) => 'Joint Account ' + (i + 1) + ': ' + p + '%').join(', ');
-      const summaryTextElement = document.getElementById('unequalSplitSummaryText');
-      if (summaryTextElement) {
-        summaryTextElement.innerHTML = 
-          'You have <strong style="color: #3b82f6;">' + formatCurrency(depositAmount, 'MYR') + '</strong> and <strong>' + householdMembers + '</strong> family member' + (householdMembers > 1 ? 's' : '') + '. You decided to open joint accounts with each of them, and the ratios are: ' + percentageText + '.';
-      }
-      
-      const resultsContainer = document.getElementById('unequalSplitResultsGrid');
-      if (resultsContainer) {
-        resultsContainer.innerHTML = '';
-        let totalUninsured = 0;
-        
-        for (let i = 0; i < householdMembers; i++) {
-          const accountAmount = (depositAmount * percentages[i]) / 100;
-          const protectedAmount = Math.min(accountAmount, malaysiaLimit);
-          const uninsuredAmount = Math.max(0, accountAmount - malaysiaLimit);
-          const isFullyCovered = accountAmount <= malaysiaLimit;
-          const coveragePercentage = (protectedAmount / accountAmount) * 100;
-          const coverageStatus = isFullyCovered ? 'Fully Covered (100%)' : `Partially Covered (${coveragePercentage.toFixed(1)}%)`;
-          totalUninsured += uninsuredAmount;
-          
-          const cardDiv = document.createElement('div');
-          cardDiv.className = 'summary-card';
-          cardDiv.innerHTML = '<div class="summary-icon">👥</div><div class="summary-label">Joint Account ' + (i + 1) + '</div><div style="font-size: 14px; color: #555; margin-bottom: 4px;"><strong>Deposited:</strong> ' + formatCurrency(accountAmount, 'MYR') + '</div><div style="font-size: 14px; color: #10b981; margin-bottom: 4px;"><strong>Protected:</strong> ' + formatCurrency(protectedAmount, 'MYR') + '</div><div style="font-size: 12px; color: ' + (isFullyCovered ? '#10b981' : '#f59e0b') + '; font-weight: 600;">' + coverageStatus + '</div>';
-          resultsContainer.appendChild(cardDiv);
-        }
-        
-        const totalUninsuredElement = document.getElementById('totalUninsuredAmount');
-        if (totalUninsuredElement) {
-          totalUninsuredElement.textContent = formatCurrency(totalUninsured, 'MYR');
-        }
-      }
-      
-      const resultsDiv = document.getElementById('unequalSplitResults');
-      if (resultsDiv) {
-        resultsDiv.style.display = 'block';
-      }
-    }
-
-    function showStep6() {
-      if (window.jointAccountChoice === 'Yes' && window.equalSplitChoice === 'No') {
-        const householdMembers = window.householdMembers || 0;
-        const percentages = [];
-        for (let i = 1; i <= householdMembers; i++) {
-          const input = document.getElementById('percentage' + i);
-          if (input) {
-            percentages.push(parseFloat(input.value));
-          }
-        }
-        window.customPercentages = percentages;
-      }
-      
-      const currentCards = ['step4Card', 'step5Card'];
-      currentCards.forEach(cardId => {
-        const card = document.getElementById(cardId);
-        if (card) card.style.display = 'none';
-      });
-      
-      const step6Card = document.getElementById('step6Card');
-      if (step6Card) {
-        step6Card.style.display = 'block';
-      }
-      
-      const depositAmount = window.depositAmount || 0;
-      const householdMembers = window.householdMembers || 0;
-      const malaysiaLimit = 250000;
-      
-      document.getElementById('finalDepositAmount').textContent = formatCurrency(depositAmount, 'MYR');
-      document.getElementById('finalFamilyMembers').textContent = householdMembers;
-      
-      let accountStrategy, distributionMethod, totalProtected = 0, totalUninsured = 0, insights = '';
-      
-      if (window.jointAccountChoice === 'No') {
-        accountStrategy = 'Individual deposit account';
-        distributionMethod = 'Single account ownership';
-        totalProtected = Math.min(depositAmount, malaysiaLimit);
-        totalUninsured = Math.max(0, depositAmount - malaysiaLimit);
-        
-        insights = `You selected to keep your MYR ${depositAmount.toLocaleString()} in an individual account. ` +
-                  (totalUninsured > 0 ? 
-                    `While MYR ${totalProtected.toLocaleString()} is protected under PIDM coverage, MYR ${totalUninsured.toLocaleString()} exceeded coverage limit.` :
-                    `Your entire deposit is fully protected under PIDM coverage.`);
-                    
-      } else if (window.equalSplitChoice === 'Yes') {
-        accountStrategy = `${householdMembers} joint accounts with family members`;
-        distributionMethod = 'Equal split distribution';
-        
-        const amountPerAccount = depositAmount / householdMembers;
-        for (let i = 0; i < householdMembers; i++) {
-          const protected = Math.min(amountPerAccount, malaysiaLimit);
-          const uninsured = Math.max(0, amountPerAccount - malaysiaLimit);
-          totalProtected += protected;
-          totalUninsured += uninsured;
-        }
-        
-        insights = `You distributed MYR ${depositAmount.toLocaleString()} equally across ${householdMembers} joint accounts (${formatCurrency(amountPerAccount, 'MYR')} each). ` +
-                  (totalUninsured > 0 ?
-                    `Each account has MYR ${Math.min(amountPerAccount, malaysiaLimit).toLocaleString()} protected, with ${formatCurrency(totalUninsured/householdMembers, 'MYR')} uninsured per account.` :
-                    `All joint accounts are fully protected under PIDM coverage. `);
-                    
-      } else {
-        accountStrategy = `${householdMembers} joint accounts with family members`;
-        const percentageText = window.customPercentages.map((p, i) => `${p}%`).join(', ');
-        distributionMethod = `Custom split (${percentageText})`;
-        
-        for (let i = 0; i < householdMembers; i++) {
-          const accountAmount = (depositAmount * window.customPercentages[i]) / 100;
-          const protected = Math.min(accountAmount, malaysiaLimit);
-          const uninsured = Math.max(0, accountAmount - malaysiaLimit);
-          totalProtected += protected;
-          totalUninsured += uninsured;
-        }
-        
-        insights = `You created a custom distribution across ${householdMembers} joint accounts with ratios of ${percentageText}. ` +
-                  (totalUninsured > 0 ?
-                    `Your total protected deposit amount is MYR ${totalProtected.toLocaleString()}, with MYR ${totalUninsured.toLocaleString()} exceeded coverage limit.` :
-                    `All your joint accounts are fully protected under PIDM coverage.`);
-      }
-      
-      document.getElementById('finalAccountStrategy').textContent = accountStrategy;
-      document.getElementById('finalDistribution').textContent = distributionMethod;
-      document.getElementById('finalProtectedAmount').textContent = formatCurrency(totalProtected, 'MYR');
-      document.getElementById('finalUninsuredAmount').textContent = formatCurrency(totalUninsured, 'MYR');
-      document.getElementById('finalInsights').textContent = insights;
-    }
-    
-    function startOver() {
-      window.depositAmount = null;
-      window.householdMembers = null;
-      window.jointAccountChoice = null;
-      window.equalSplitChoice = null;
-      window.customPercentages = null;
-      
-      document.getElementById('page1').classList.remove('active');
-      document.getElementById('page2').classList.remove('active');
-      document.getElementById('page0').classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      
-      if (amountInput) amountInput.value = '';
-      document.querySelectorAll('.country-option').forEach(el => el.classList.remove('selected'));
-      if (summaryAmount) summaryAmount.textContent = 'MYR 0.00';
-      if (summaryCountry) summaryCountry.textContent = '-';
-      if (summaryConverted) summaryConverted.textContent = '-';
-      if (summaryThreshold) summaryThreshold.textContent = '-';
-      if (coverageBox) coverageBox.style.display = 'none';
-      if (regionalCoverage) regionalCoverage.style.display = 'none';
-      if (document.getElementById('familyScenarioPrompt')) document.getElementById('familyScenarioPrompt').style.display = 'none';
+      // For now, just show an alert since we're testing the basic functionality
+      alert('Family scenario would start here. Basic navigation is working!');
     }
 
     // Initialize on page load
-    renderCountryGrid();
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded, initializing...');
+      renderCountryGrid();
 
-    // Add event listener for amount input to trigger calculations - ASA 2025
-    if (amountInput) {
-      amountInput.addEventListener('input', function() {
-        const amount = parseFloat(this.value);
-        if (amount && amount > 0) {
-          summaryAmount.textContent = formatCurrency(amount, 'MYR');
-          
-          // Trigger country selection update if a country is already selected
-          const selectedCountry = document.querySelector('.country-option.selected');
-          if (selectedCountry) {
-            const countryName = selectedCountry.textContent.trim();
-            const country = countries.find(c => c.name === countryName);
-            if (country) {
-              selectCountry(country, selectedCountry);
+      // Add event listener for amount input
+      if (amountInput) {
+        amountInput.addEventListener('input', function() {
+          const amount = parseFloat(this.value);
+          if (amount && amount > 0) {
+            summaryAmount.textContent = formatCurrency(amount, 'MYR');
+            
+            // Trigger country selection update if a country is already selected
+            const selectedCountry = document.querySelector('.country-option.selected');
+            if (selectedCountry) {
+              const countryName = selectedCountry.textContent.trim();
+              const country = countries.find(c => c.name === countryName);
+              if (country) {
+                selectCountry(country, selectedCountry);
+              }
             }
+          } else {
+            summaryAmount.textContent = 'MYR 0.00';
+            if (coverageBox) coverageBox.style.display = 'none';
+            if (regionalCoverage) regionalCoverage.style.display = 'none';
+            if (document.getElementById('familyScenarioPrompt')) document.getElementById('familyScenarioPrompt').style.display = 'none';
           }
-        } else {
-          summaryAmount.textContent = 'MYR 0.00';
-          if (coverageBox) coverageBox.style.display = 'none';
-          if (regionalCoverage) regionalCoverage.style.display = 'none';
-          if (document.getElementById('familyScenarioPrompt')) document.getElementById('familyScenarioPrompt').style.display = 'none';
-        }
-      });
-    }
+        });
+      }
+    });
   </script>
 </body>
 </html>
